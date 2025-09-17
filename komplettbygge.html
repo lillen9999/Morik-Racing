@@ -14,16 +14,19 @@
 
     /* Navigation */
     .navbar {
-      background-color: rgb(0, 0, 0);
+      background-color: rgb(0,0,0);
       padding: 15px 30px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative; /* för absolut positionerad mobilmeny */
+      z-index: 1000;
     }
     .center {
       display: flex;
       gap: 20px;
+      align-items: center;
     }
 
     .navbar a {
@@ -37,14 +40,23 @@
       height: 60px;
       width: auto;
       background-color: black;
-      
     }
-    .navbar button{
-        background-color: #000000;
-        color: #ffffff;
-        border: none;
-        padding: 20px;  
+
+    .navbar a button{
+      background-color: transparent;
+      color: #ffffff;
+      border: none;
+      padding: 12px 14px;
+      font-weight: 600;
+      cursor: pointer;
     }
+
+    .navbar a button:hover {
+      opacity: 0.9;
+      text-decoration: underline;
+    }
+
+    /* Desktop search wrapper */
     .search-bar {
       position: relative;
       align-items: center;
@@ -52,27 +64,101 @@
       border: none;
       border-radius: 10px;
     }
-  #results {
-  margin-top: 10px;
-  border-radius: 5px;
-  max-width: 300px;
-  background: #333; 
-  box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
-}
+    .search-wrapper {
+      position: relative;
+    }
+    .search-wrapper input {
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      min-width: 180px;
+    }
 
-.result-item {
-  padding: 8px;
-  cursor: pointer;
-  color: white; 
-  border: none; 
-  border-radius: 5px;
-  font-weight: 500;
-}
+    .results {
+      margin-top: 6px;
+      border-radius: 5px;
+      max-width: 300px;
+      background: #333;
+      box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: 1100;
+    }
 
-.result-item:hover {
-  background: #ffffff;
-  color: #000000; 
-}
+    .result-item {
+      padding: 8px;
+      cursor: pointer;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: 500;
+    }
+    .result-item:hover {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      line-height: 1;
+    }
+
+    /* Mobile menu (hidden by default) */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #000;
+      padding: 14px 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    .mobile-menu.open {
+      display: block;
+      animation: menuSlide 180ms ease;
+    }
+    @keyframes menuSlide {
+      from { transform: translateY(-6px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .mobile-menu .center {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .mobile-menu .center a button {
+      width: 100%;
+      text-align: left;
+      padding: 12px;
+      background: transparent;
+      color: #fff;
+      border-radius: 6px;
+    }
+    .mobile-menu .mobile-search .search-wrapper input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background: #111;
+      color: #fff;
+    }
+    .mobile-menu .mobile-search .results {
+      position: relative;
+      background: #222;
+    }
 
   /* Header */
   .header {
@@ -110,7 +196,27 @@ footer {
             width: 100%;
             position: relative; 
         }
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+      .center { gap: 10px; }
+      .navbar { padding: 12px 16px; }
+      .logo img { height: 48px; }
 
+      /* Dölj desktop-länkar och sök på mobil */
+      .center { display: none; }
+      .search-bar { display: none; }
+
+      /* Visa hamburger */
+      .hamburger { display: block; }
+    }
+
+    /* Extra small screens: category items stack */
+    @media (max-width: 600px) {
+      .category-item { width: 46%; min-width: 140px; }
+      .hero { flex-direction: column; height: 420px; }
+      .hero .left, .hero .right { height: 210px; }
+      .hero-text h1 { font-size: 28px; }
+    }
 </style>
 <!-- Navigation -->
 <div class="navbar">
