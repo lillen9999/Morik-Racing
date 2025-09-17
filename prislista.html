@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tjörn's Customs - Priser</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffffff;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: rgb(0, 0, 0);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img {
+      height: 60px;
+      width: auto;
+      background-color: black;
+        }
+        .center {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #ffffff;
+            margin: 0 10px;
+            font-weight: 500;
+        }
+
+        .logo {
+            font-weight: 1000;
+            font-size: 22px;
+            color: #ffffff;
+        }
+        .navbar button {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 20px;
+        }
+
+        /* Hero */
+        .hero-text {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            margin: 0;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            margin: 10px 0 20px;
+        }
+
+        .hero-text button {
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 10px;
+            border: #000000;
+            font-weight: 600;
+            transition: transform 0.6s, box-shadow 0.6s, background-color 0.3s, color 0.3s;
+        }
+
+        .hero-text button:hover {
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Info bar */
+        .info-bar {
+            background-color: #111;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            font-size: 14px;
+        }
+
+        /* Price List */
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .price {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="navbar">
+        <div class="logo"><img src="icons/logo white.png" alt=""></div>
+        <div class="center">
+            <a href="index.html"><button>Hem</button></a>
+            <a href="tjänster.html"><button>Tjänster</button></a>
+            <a href="tjänsterbast.html"><button>Bästsäljare</button></a>
+            <a href="kontakt.html"><button>Kontakt</button></a>
+        </div>
+        <div>
+            <a href="#">🔍</a>
+            <a href="#">🛒</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero-text">
+        <h1>Priser</h1>
+        <p>Här hittar du våra aktuella priser för tjänster och produkter.</p>
+    </div>
+
+    <!-- Price List -->
+    <div class="container">
+        <h2>Prislista</h2>
+        <ul>
+            <li>
+                <span>Service</span>
+                <span class="price">500 SEK</span>
+            </li>
+            <li>
+                <span>Motor Bygge</span>
+                <span class="price">500-1500 SEK</span>
+            </li>
+            <li>
+                <span>Komplettbygge</span>
+                <span class="price">Kontakta för pris</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Info Bar -->
+    <div class="info-bar">
+        <div>SUVERÄN KUNDTJÄNST</div>
+        <div>SÄKER BETALNING</div>
+        <div>SNABB BYGGTID</div>
+    </div>
+</body>
+<script>
+    // Sample pages data
+    const pages = [
+    { name: "Hem", url: "index.html" },
+    { name: "Tjänster", url: "tjanster.html" },
+    { name: "Kontakt", url: "kontakt.html" },
+    { name: "Bästsäljare", url: "Tjansterbast.html" },
+    { name: "Priser", url: "prislista.html" },
+    { name: "Services", url: "Service.html" },
+    { name: "Motor", url: "tjanster.html" },
+    
+    ];
+    
+    function searchPages(event) {
+    const query = document.getElementById("searchBox").value.toLowerCase();
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = ""; // Clear previous results
+    
+    // Filter pages
+    const results = pages.filter(page => page.name.toLowerCase().includes(query));
+    
+    // Display results
+    results.forEach(page => {
+      const div = document.createElement("div");
+      div.classList.add("result-item");
+      div.textContent = page.name;
+      div.onclick = () => window.location.href = page.url;
+      resultsDiv.appendChild(div);
+    });
+    
+    if (results.length === 0 && query !== "") {
+      resultsDiv.innerHTML = "<div class='result-item'>No results found</div>";
+    }
+    
+    
+    if (event && event.key === "Enter" && results.length > 0) {
+      window.location.href = results[0].url;
+    }
+    }
+    </script>
+    </body>
+    </html>
