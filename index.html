@@ -12,7 +12,7 @@
       background-color: #ffffff;
     }
 
-    /* Navigation */
+    /* ---------- NAVIGATION ---------- */
     .navbar {
       background-color: rgb(0,0,0);
       padding: 15px 30px;
@@ -52,16 +52,12 @@
       text-decoration: underline;
     }
 
-    /* Desktop search wrapper */
+    /* Desktop search */
     .search-bar {
       position: relative;
       align-items: center;
       margin: 10px;
-      border: none;
       border-radius: 10px;
-    }
-    .search-wrapper {
-      position: relative;
     }
     .search-wrapper input {
       padding: 8px 10px;
@@ -105,7 +101,7 @@
       line-height: 1;
     }
 
-    /* Mobile menu (hidden by default) */
+    /* Mobile menu */
     .mobile-menu {
       display: none;
       position: absolute;
@@ -153,31 +149,42 @@
       background: #222;
     }
 
-    /* Mobile dropdown */
-    .mobile-dropdown {
+    /* Dropdown inside mobile menu */
+    .dropdown {
       display: flex;
       flex-direction: column;
     }
-    .mobile-dropdown button {
+    .dropdown-btn {
       width: 100%;
+      text-align: left;
+      padding: 12px;
       background: transparent;
       color: #fff;
       border: none;
-      padding: 12px;
-      text-align: left;
       font-weight: 600;
       cursor: pointer;
+      border-radius: 6px;
     }
-    .mobile-dropdown-content {
+    .dropdown-btn:hover { background-color: rgba(255,255,255,0.1); }
+    .dropdown-content {
       display: none;
       flex-direction: column;
-      padding-left: 15px;
+      margin-left: 10px;
     }
-    .mobile-dropdown.open .mobile-dropdown-content {
-      display: flex;
+    .dropdown-content a button {
+      padding: 10px 12px;
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 6px;
     }
+    .dropdown-content a button:hover { background-color: rgba(255,255,255,0.1); }
+    .dropdown.open .dropdown-content { display: flex; }
 
-    /* Hero */
+    /* ---------- HERO ---------- */
     .hero {
       display: flex;
       height: 500px;
@@ -188,18 +195,8 @@
       background-size: cover;
       background-position: center;
     }
-    .hero .left {
-      background-image: url('bilder/moppe2.jpg');
-      height: 500px;
-      filter: brightness(70%);
-      position: inherit;
-    }
-    .hero .right {
-      background-image: url('bilder/moppe1.jpg');
-      height: 500px;
-      filter: brightness(70%);
-      position: relative;
-    }
+    .hero .left { background-image: url('bilder/moppe2.jpg'); filter: brightness(70%); }
+    .hero .right { background-image: url('bilder/moppe1.jpg'); filter: brightness(70%); }
     .hero-text {
       position: absolute;
       top: 50%;
@@ -210,23 +207,20 @@
       text-shadow: 0 2px 4px rgba(0,0,0,0.5);
       z-index: 2;
     }
-    .hero-text h1 {
-      font-size: 48px;
-      margin: 0;
-    }
+    .hero-text h1 { font-size: 48px; margin: 0; }
     .hero-text button {
-      background-color: #000000;
+      background-color: #000;
       color: #fff;
       padding: 20px;
       border-radius: 10px;
       border: none;
       font-weight: 600;
-      transition: transform 0.6s, box-shadow 0.6s, background-color 0.3s, color 0.3s;
       cursor: pointer;
+      transition: transform 0.6s, box-shadow 0.6s, background-color 0.3s, color 0.3s;
     }
     .hero-text button:hover {
-      background-color: #ffffff;
-      color: #000000;
+      background-color: #fff;
+      color: #000;
       transform: scale(1.05);
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
@@ -317,19 +311,9 @@
       .hero { flex-direction: column; height: 420px; }
       .hero .left, .hero .right { height: 210px; }
       .hero-text h1 { font-size: 28px; }
-      .category-grid {
-        justify-content: center;
-        gap: 15px;
-      }
-      .category-link {
-        width: 80%;
-        max-width: 300px;
-        margin: 0 auto;
-      }
-      .category-item {
-        margin-left: 0;
-        margin-right: 0;
-      }
+      .category-grid { justify-content: center; gap: 15px; }
+      .category-link { width: 80%; max-width: 300px; margin: 0 auto; }
+      .category-item { margin-left: 0; margin-right: 0; }
     }
   </style>
 </head>
@@ -339,7 +323,7 @@
   <div class="navbar">
     <div class="logo"><img src="icons/logo white.png" alt="TjörnsCustoms Logo"></div>
 
-    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMenu()">☰</button>
 
     <div class="center" id="navLinks">
       <a href="tjanster.html"><button>Tjänster</button></a>
@@ -355,11 +339,12 @@
       </div>
     </div>
 
+    <!-- Mobile menu -->
     <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
       <div class="center">
-        <div class="mobile-dropdown" id="mobileDropdown">
-          <button id="mobileDropdownBtn">Tjänster ▼</button>
-          <div class="mobile-dropdown-content">
+        <div class="dropdown">
+          <button class="dropdown-btn">Tjänster ▸</button>
+          <div class="dropdown-content">
             <a href="motorbygge.html"><button>Motorbygge</button></a>
             <a href="service.html"><button>Service</button></a>
             <a href="styling.html"><button>Styling</button></a>
@@ -433,78 +418,69 @@
   </footer>
 
   <script>
-  const pages = [
-    { name: "Hem", url: "index.html" },
-    { name: "Tjänster", url: "tjanster.html" },
-    { name: "Kontakt", url: "kontakt.html" },
-    { name: "Bästsäljare", url: "tjansterbast.html" },
-    { name: "Priser", url: "prislista.html" },
-    { name: "Services", url: "service.html" },
-    { name: "Motor", url: "motorbygge.html" }
-  ];
+    const pages = [
+      { name: "Hem", url: "index.html" },
+      { name: "Tjänster", url: "tjanster.html" },
+      { name: "Kontakt", url: "kontakt.html" },
+      { name: "Bästsäljare", url: "tjansterbast.html" },
+      { name: "Priser", url: "prislista.html" },
+      { name: "Motorbygge", url: "motorbygge.html" },
+      { name: "Service", url: "service.html" },
+      { name: "Styling", url: "styling.html" },
+      { name: "Komplettbygge", url: "komplettbygge.html" }
+    ];
 
-  const hamburgerBtn = document.getElementById('hamburgerBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const desktopSearch = document.getElementById('searchBox');
-  const mobileSearch = document.getElementById('mobileSearchBox');
-
-  // Hamburger toggle
-  hamburgerBtn.addEventListener('click', () => {
-    const open = mobileMenu.classList.toggle('open');
-    mobileMenu.setAttribute('aria-hidden', !open);
-    hamburgerBtn.setAttribute('aria-expanded', open);
-    hamburgerBtn.textContent = open ? '✕' : '☰';
-  });
-
-  // Close mobile menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
-      mobileMenu.classList.remove('open');
-      mobileMenu.setAttribute('aria-hidden', true);
-      hamburgerBtn.setAttribute('aria-expanded', false);
-      hamburgerBtn.textContent = '☰';
+    // Hamburger toggle
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    function toggleMenu() {
+      const open = mobileMenu.classList.toggle('open');
+      mobileMenu.setAttribute('aria-hidden', !open);
+      hamburgerBtn.setAttribute('aria-expanded', open);
+      hamburgerBtn.textContent = open ? '✕' : '☰';
     }
-  });
 
-  // Close menu with Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      mobileMenu.classList.remove('open');
-      mobileMenu.setAttribute('aria-hidden', true);
-      hamburgerBtn.setAttribute('aria-expanded', false);
-      hamburgerBtn.textContent = '☰';
-    }
-  });
-
-  // Search function
-  function searchPages(event) {
-    const input = event.target.value.toLowerCase();
-    const parentResults = event.target.parentElement.querySelector('.results');
-    parentResults.innerHTML = '';
-
-    if (!input) return;
-
-    const filtered = pages.filter(page => page.name.toLowerCase().includes(input));
-
-    filtered.forEach(page => {
-      const div = document.createElement('div');
-      div.classList.add('result-item');
-      div.textContent = page.name;
-      div.addEventListener('click', () => {
-        window.location.href = page.url;
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', true);
+        hamburgerBtn.setAttribute('aria-expanded', false);
+        hamburgerBtn.textContent = '☰';
       });
-      parentResults.appendChild(div);
     });
 
-    if (event.key === 'Enter' && filtered.length > 0) {
-      window.location.href = filtered[0].url;
+    // Mobile dropdown toggle
+    document.querySelectorAll('.dropdown-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.parentElement.classList.toggle('open');
+      });
+    });
+
+    // Search function
+    function searchPages(e) {
+      const value = e.target.value.toLowerCase();
+      const wrapper = e.target.parentElement.querySelector('.results');
+      wrapper.innerHTML = '';
+      if (!value) return;
+      const filtered = pages.filter(p => p.name.toLowerCase().includes(value));
+      filtered.forEach((p, i) => {
+        const div = document.createElement('div');
+        div.className = 'result-item';
+        div.textContent = p.name;
+        div.addEventListener('click', () => { window.location.href = p.url; });
+        wrapper.appendChild(div);
+      });
+      // Enter key selects first
+      if (e.key === 'Enter' && filtered.length > 0) {
+        window.location.href = filtered[0].url;
+      }
     }
-  }
 
-  desktopSearch.addEventListener('keyup', searchPages);
-  mobileSearch.addEventListener('keyup', searchPages);
-</script>
+    document.getElementById('searchBox').addEventListener('keyup', searchPages);
+    document.getElementById('mobileSearchBox').addEventListener('keyup', searchPages);
 
+  </script>
 
 </body>
 </html>
