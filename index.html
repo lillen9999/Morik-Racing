@@ -20,7 +20,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative; /* för absolut positionerad mobilmeny */
+      position: relative;
       z-index: 1000;
     }
     .center {
@@ -238,12 +238,19 @@
       gap: 20px;
       flex-wrap: wrap;
     }
-    .category-item  {
+
+    .category-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      width: 20%;
+      min-width: 150px;
+    }
+
+    .category-item {
       background-color: white;
       border-radius: 8px;
-      width: 20%;
       min-height: 150px;
-      min-width: 150px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
@@ -251,19 +258,15 @@
       align-items: center;
       text-align: center;
       padding: 10px;
-      margin: auto;
       font-weight: 600;
-      color: #000000;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
     }
-    .category-item:hover {
+    .category-link:hover .category-item {
       transform: scale(1.1);
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       background-color: #f0f0f0;
-      cursor: pointer;
     }
     .category-item img { max-width: 60px; margin-bottom: 10px; }
-    a { text-decoration: none; color: #000000; font-weight: 600; }
 
     footer {
       text-align: center;
@@ -279,18 +282,13 @@
       .center { gap: 10px; }
       .navbar { padding: 12px 16px; }
       .logo img { height: 48px; }
-
-      /* Dölj desktop-länkar och sök på mobil */
       .center { display: none; }
       .search-bar { display: none; }
-
-      /* Visa hamburger */
       .hamburger { display: block; }
     }
 
-    /* Extra small screens: category items stack */
     @media (max-width: 600px) {
-      .category-item { width: 46%; min-width: 140px; }
+      .category-link { width: 46%; min-width: 140px; }
       .hero { flex-direction: column; height: 420px; }
       .hero .left, .hero .right { height: 210px; }
       .hero-text h1 { font-size: 28px; }
@@ -303,10 +301,8 @@
   <div class="navbar">
     <div class="logo"><img src="icons/logo white.png" alt="TjörnsCustoms Logo"></div>
 
-    <!-- Hamburger (visas på mobil) -->
     <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMenu()">☰</button>
 
-    <!-- Desktop links (visas på desktop) -->
     <div class="center" id="navLinks">
       <a href="tjanster.html"><button>Tjänster</button></a>
       <a href="tjansterbast.html"><button>Bästsäljare</button></a>
@@ -314,7 +310,6 @@
       <a href="kontakt.html"><button>Kontakt</button></a>
     </div>
 
-    <!-- Desktop search -->
     <div class="search-bar">
       <div class="search-wrapper">
         <input id="searchBox" type="text" placeholder="Search for a page..." onkeyup="searchPages(event)">
@@ -322,7 +317,6 @@
       </div>
     </div>
 
-    <!-- Mobilmeny (kopierar länkar + sök för mobil) -->
     <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
       <div class="center">
         <a href="tjanster.html"><button>Tjänster</button></a>
@@ -344,7 +338,6 @@
     <div class="left"></div>
     <div class="right"></div>
     <div class="hero-text">
-      
       <h1>VINTERBYGGENA ÄR IGÅNG!</h1>
       <p>Låt oss hjälpa dig.</p>
       <a href="tjanster.html"><button>TJÄNSTER</button></a>
@@ -362,10 +355,30 @@
   <div class="categories">
     <h2>Populära kategorier</h2>
     <div class="category-grid">
-      <div class="category-item"><img src="icons/gearbox-engine-icon.png" alt="Del 1"><a href="motorbygge.html">MOTORBYGGE</a></div>
-      <div class="category-item"><img src="icons/engine-oil-icon.png" alt="Del 1"><a href="service.html">SERVICE</a></div>
-      <div class="category-item"><img src="icons/services-plumber-icon.webp" alt="Del 1"><a href="styling.html">STYLING</a></div>
-      <div class="category-item"><img src="icons/settings-icon.webp" alt="Del 1"><a href="komplettbygge.html">KOMPLETTBYGGE</a></div>
+      <a href="motorbygge.html" class="category-link">
+        <div class="category-item">
+          <img src="icons/gearbox-engine-icon.png" alt="Motorbygge">
+          MOTORBYGGE
+        </div>
+      </a>
+      <a href="service.html" class="category-link">
+        <div class="category-item">
+          <img src="icons/engine-oil-icon.png" alt="Service">
+          SERVICE
+        </div>
+      </a>
+      <a href="styling.html" class="category-link">
+        <div class="category-item">
+          <img src="icons/services-plumber-icon.webp" alt="Styling">
+          STYLING
+        </div>
+      </a>
+      <a href="komplettbygge.html" class="category-link">
+        <div class="category-item">
+          <img src="icons/settings-icon.webp" alt="Komplettbygge">
+          KOMPLETTBYGGE
+        </div>
+      </a>
     </div>
   </div>
 
@@ -374,7 +387,6 @@
   </footer>
 
   <script>
-    // Pages för sökfunktionen
     const pages = [
       { name: "Hem", url: "index.html" },
       { name: "Tjänster", url: "tjanster.html" },
@@ -385,7 +397,6 @@
       { name: "Motor", url: "tjanster.html" }
     ];
 
-    // Toggle mobilmeny
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const mobileMenu = document.getElementById('mobileMenu');
 
@@ -396,7 +407,6 @@
       hamburgerBtn.textContent = open ? '✕' : '☰';
     }
 
-    // Stäng menyn när en länk i mobilmenyn klickas
     mobileMenu.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         mobileMenu.classList.remove('open');
@@ -406,7 +416,6 @@
       });
     });
 
-    // Klick utanför mobilmenyn stänger den
     document.addEventListener('click', (e) => {
       const withinMenu = mobileMenu.contains(e.target) || hamburgerBtn.contains(e.target);
       if (!withinMenu && mobileMenu.classList.contains('open')) {
@@ -417,7 +426,6 @@
       }
     });
 
-    // Escape stänger menyn
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
         mobileMenu.classList.remove('open');
@@ -427,7 +435,6 @@
       }
     });
 
-    // Sökfunktion som fungerar både för desktop och mobil (använder event.target)
     function searchPages(event) {
       const input = event && event.target ? event.target : document.getElementById('searchBox');
       const query = (input.value || '').toLowerCase().trim();
@@ -436,10 +443,7 @@
       if (!resultsDiv) return;
       resultsDiv.innerHTML = "";
 
-      if (query === "") {
-        // Om tomt: visa inget
-        return;
-      }
+      if (query === "") return;
 
       const results = pages.filter(page => page.name.toLowerCase().includes(query));
       results.forEach(page => {
@@ -457,7 +461,6 @@
         resultsDiv.appendChild(none);
       }
 
-      // Tryck Enter -> gå till första resultatet
       if (event && event.key === "Enter" && results.length > 0) {
         window.location.href = results[0].url;
       }
