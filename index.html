@@ -28,20 +28,17 @@
       gap: 20px;
       align-items: center;
     }
-
     .navbar a {
       text-decoration: none;
       color: #ffffff;
       margin: 0 10px;
       font-weight: 500;
     }
-
     .logo img {
       height: 60px;
       width: auto;
       background-color: black;
     }
-
     .navbar a button{
       background-color: transparent;
       color: #ffffff;
@@ -50,7 +47,6 @@
       font-weight: 600;
       cursor: pointer;
     }
-
     .navbar a button:hover {
       opacity: 0.9;
       text-decoration: underline;
@@ -73,7 +69,6 @@
       border: 1px solid #ccc;
       min-width: 180px;
     }
-
     .results {
       margin-top: 6px;
       border-radius: 5px;
@@ -85,7 +80,6 @@
       right: 0;
       z-index: 1100;
     }
-
     .result-item {
       padding: 8px;
       cursor: pointer;
@@ -132,7 +126,6 @@
       from { transform: translateY(-6px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
-
     .mobile-menu .center {
       display: flex;
       flex-direction: column;
@@ -158,6 +151,30 @@
     .mobile-menu .mobile-search .results {
       position: relative;
       background: #222;
+    }
+
+    /* Mobile dropdown */
+    .mobile-dropdown {
+      display: flex;
+      flex-direction: column;
+    }
+    .mobile-dropdown button {
+      width: 100%;
+      background: transparent;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .mobile-dropdown-content {
+      display: none;
+      flex-direction: column;
+      padding-left: 15px;
+    }
+    .mobile-dropdown.open .mobile-dropdown-content {
+      display: flex;
     }
 
     /* Hero */
@@ -239,7 +256,6 @@
       gap: 20px;
       flex-wrap: wrap;
     }
-
     .category-link {
       text-decoration: none;
       color: inherit;
@@ -247,7 +263,6 @@
       width: 20%;
       min-width: 150px;
     }
-
     .category-item {
       background: linear-gradient(135deg, #ffffff, #f8f8f8);
       border-radius: 12px;
@@ -298,13 +313,10 @@
       .search-bar { display: none; }
       .hamburger { display: block; }
     }
-
     @media (max-width: 600px) {
       .hero { flex-direction: column; height: 420px; }
       .hero .left, .hero .right { height: 210px; }
       .hero-text h1 { font-size: 28px; }
-
-      /* Center categories on mobile */
       .category-grid {
         justify-content: center;
         gap: 15px;
@@ -327,7 +339,7 @@
   <div class="navbar">
     <div class="logo"><img src="icons/logo white.png" alt="TjörnsCustoms Logo"></div>
 
-    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMenu()">☰</button>
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileMenu">☰</button>
 
     <div class="center" id="navLinks">
       <a href="tjanster.html"><button>Tjänster</button></a>
@@ -345,7 +357,15 @@
 
     <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
       <div class="center">
-        <a href="tjanster.html"><button>Tjänster</button></a>
+        <div class="mobile-dropdown" id="mobileDropdown">
+          <button id="mobileDropdownBtn">Tjänster ▼</button>
+          <div class="mobile-dropdown-content">
+            <a href="motorbygge.html"><button>Motorbygge</button></a>
+            <a href="service.html"><button>Service</button></a>
+            <a href="styling.html"><button>Styling</button></a>
+            <a href="komplettbygge.html"><button>Komplettbygge</button></a>
+          </div>
+        </div>
         <a href="tjansterbast.html"><button>Bästsäljare</button></a>
         <a href="prislista.html"><button>Priser</button></a>
         <a href="kontakt.html"><button>Kontakt</button></a>
@@ -413,29 +433,46 @@
   </footer>
 
   <script>
-    const pages = [
-      { name: "Hem", url: "index.html" },
-      { name: "Tjänster", url: "tjanster.html" },
-      { name: "Kontakt", url: "kontakt.html" },
-      { name: "Bästsäljare", url: "Tjansterbast.html" },
-      { name: "Priser", url: "prislista.html" },
-      { name: "Services", url: "Service.html" },
-      { name: "Motor", url: "tjanster.html" }
-    ];
-
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const mobileMenu = document.getElementById('mobileMenu');
+    const mobileDropdownBtn = document.getElementById('mobileDropdownBtn');
+    const mobileDropdown = document.getElementById('mobileDropdown');
 
-    function toggleMenu() {
+    // Hamburger toggle
+    hamburgerBtn.addEventListener('click', () => {
       const open = mobileMenu.classList.toggle('open');
       mobileMenu.setAttribute('aria-hidden', !open);
       hamburgerBtn.setAttribute('aria-expanded', open);
       hamburgerBtn.textContent = open ? '✕' : '☰';
-    }
+    });
 
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
+    // Mobile dropdown toggle
+    mobileDropdownBtn.addEventListener('click', () => {
+      mobileDropdown.classList.toggle('open');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
         mobileMenu.classList.remove('open');
+        mobileDropdown.classList.remove('open');
         mobileMenu.setAttribute('aria-hidden', true);
         hamburgerBtn.setAttribute('aria-expanded', false);
-        hamburgerBtn.textContent
+        hamburgerBtn.textContent = '☰';
+      }
+    });
+
+    // Close menu with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        mobileMenu.classList.remove('open');
+        mobileDropdown.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', true);
+        hamburgerBtn.setAttribute('aria-expanded', false);
+        hamburgerBtn.textContent = '☰';
+      }
+    });
+  </script>
+
+</body>
+</html>
