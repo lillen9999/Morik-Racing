@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -311,4 +312,319 @@
    
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TjornsCustoms</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #ffffff;
+    }
+
+    /* Navigation */
+    .navbar {
+      background-color: rgb(0, 0, 0);
+      padding: 15px 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .center {
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #ffffff;
+      margin: 0 10px;
+      font-weight: 500;
+    }
+
+    .logo img {
+      height: 60px;
+      width: auto;
+      background-color: black;
+      
+    }
+    .navbar button{
+        background-color: #000000;
+        color: #ffffff;
+        border: none;
+        padding: 20px;  
+    }
+    .search-bar {
+      position: relative;
+      align-items: center;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+    }
+    
+  #results {
+  margin-top: 10px;
+  border-radius: 5px;
+  max-width: 300px;
+  background: #333; 
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+}
+
+.result-item {
+  padding: 8px;
+  cursor: pointer;
+  color: white; 
+  border: none; 
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.result-item:hover {
+  background: #ffffff;
+  color: #000000; 
+}
+
+
+    /* Hero */
+    .hero {
+      display: flex;
+      height: 500px;
+      position: relative;
+    }
+
+    .hero .left, .hero .right {
+      flex: 1;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero .left {
+      background-image: url('bilder/moppe2.jpg'); 
+        height: 500px;
+        filter: brightness(70%);
+        position: inherit;
+    }
+
+    .hero .right {
+      background-image: url('bilder/moppe1.jpg') ;
+      height: 500px;
+      filter: brightness(70%);
+      position: relative;
+    
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .hero-text h1 {
+      font-size: 48px;
+      margin: 0;
+    }
+
+    .hero-text button {
+        background-color: #000000;
+        color: rgb(255, 255, 255);
+        padding: 20px;
+        border-radius: 10px;
+        border: #000000;
+        font-weight: 600;
+        transition: transform 0.6s, box-shadow 0.6s, background-color 0.3s, color 0.3s;
+
+    }
+    .hero-text button:hover{
+        background-color: #ffffff;
+        color: rgb(0, 0, 0);
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    
+      
+    }
+    /* Info bar */
+    .info-bar {
+      background-color: #111;
+      color: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 15px;
+      font-size: 14px;
+    }
+
+    /* Categories */
+    .categories {
+      padding: 10px ;
+      text-align: center;
+      background-color: rgb(192, 192, 192);
+      padding-bottom: 100px;
+    }
+
+    .categories h2 {
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .category-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .category-item  {
+      background-color: white;
+      border-radius: 8px;
+      width: 20%;
+      min-height: 150px;
+        min-width: 150px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 10px;
+      margin: auto;
+    font-weight: 600;
+    color: #000000;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    }
+    .category-item:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+
+    .category-item img {
+      max-width: 60px;
+      margin-bottom: 10px;
+    }
+    a {
+      text-decoration: none;
+      color: #000000;
+      font-weight: 600;
+    }
+    footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #333;
+            color: #fff;
+            margin-top: 2rem;
+            width: 100%;
+            position: relative; 
+        }
+
+    
+    
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+ 
+<div class="navbar">
+    <div class="logo"><img src="icons/logo white.png" alt="TjörnsCustoms Logo"></div>
+  
+   
+    <!-- Links (collapse on mobile) -->
+    <div class="center" id="navLinks">
+      <a href="tjanster.html"><button>Tjänster</button></a>
+      <a href="tjansterbast.html"><button>Bästsäljare</button></a>
+      <a href="prislista.html"><button>Priser</button></a>
+      <a href="kontakt.html"><button>Kontakt</button></a>
+    </div>
+  
+    <div class="search-bar">
+      <input type="text" id="searchBox" placeholder="Search for a page..." onkeyup="searchPages(event)">
+      <div id="results"></div>
+    </div>
+  </div>
+  
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="hero-text">
+      
+      <h1>VINTER BYGGENA ÄR IGÅNG!</h1>
+      <p>Låt oss hjälpa dig.</p>
+      <a href="tjanster.html"><button>TJÄNSTER</button></a>
+    </div>
+  </div>
+
+  <!-- Info Bar -->
+  <div class="info-bar">
+    <div>SUVERÄN KUNDTJÄNST</div>
+    <div>SÄKER BETALNING</div>
+    <div>SNABB BYGGTID</div>
+  </div>
+
+  <!-- Categories -->
+  <div class="categories">
+    <h2>Populära kategorier</h2>
+    <div class="category-grid">
+      <div class="category-item"><img src="icons/gearbox-engine-icon.png" alt="Del 1"><a href="motorbygge.html">MOTORBYGGE</a></div>
+      <div class="category-item"><img src="icons/engine-oil-icon.png" alt="Del 1"><a href="service.html">SERVICE</a></div>
+      <div class="category-item"><img src="icons/services-plumber-icon.webp" alt="Del 1"><a href="styling.html">STYLING</a></div>
+      <div class="category-item"><img src="icons/settings-icon.webp" alt="Del 1"><a href="komplettbygge.html">KOMPLETTBYGGE</a></div>
+    <footer>
+        <p>&copy; 2025 Tjörns Customs. All rights reserved.</p>
+    </footer>
+    <script>
+  // Sample pages data
+  const pages = [
+  { name: "Hem", url: "index.html" },
+{ name: "Tjänster", url: "tjanster.html" },
+{ name: "Kontakt", url: "kontakt.html" },
+{ name: "Bästsäljare", url: "Tjansterbast.html" },
+{ name: "Priser", url: "prislista.html" },
+{ name: "Services", url: "Service.html" },
+{ name: "Motor", url: "tjanster.html" },
+    
+  ];
+
+  function searchPages(event) {
+    const query = document.getElementById("searchBox").value.toLowerCase();
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = ""; // Clear previous results
+
+    // Filter pages
+    const results = pages.filter(page => page.name.toLowerCase().includes(query));
+
+    // Display results
+    results.forEach(page => {
+      const div = document.createElement("div");
+      div.classList.add("result-item");
+      div.textContent = page.name;
+      div.onclick = () => window.location.href = page.url;
+      resultsDiv.appendChild(div);
+    });
+
+    if (results.length === 0 && query !== "") {
+      resultsDiv.innerHTML = "<div class='result-item'>No results found</div>";
+    }
+
+    
+    if (event && event.key === "Enter" && results.length > 0) {
+      window.location.href = results[0].url;
+    }
+  }
+   
+    </script>
+</body>
+>>>>>>> 7781eda27d39378ec107249e83e36c8b470dc054
 </html>
