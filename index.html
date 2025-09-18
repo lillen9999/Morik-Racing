@@ -433,46 +433,78 @@
   </footer>
 
   <script>
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileDropdownBtn = document.getElementById('mobileDropdownBtn');
-    const mobileDropdown = document.getElementById('mobileDropdown');
+  const pages = [
+    { name: "Hem", url: "index.html" },
+    { name: "Tjänster", url: "tjanster.html" },
+    { name: "Kontakt", url: "kontakt.html" },
+    { name: "Bästsäljare", url: "tjansterbast.html" },
+    { name: "Priser", url: "prislista.html" },
+    { name: "Services", url: "service.html" },
+    { name: "Motor", url: "motorbygge.html" }
+  ];
 
-    // Hamburger toggle
-    hamburgerBtn.addEventListener('click', () => {
-      const open = mobileMenu.classList.toggle('open');
-      mobileMenu.setAttribute('aria-hidden', !open);
-      hamburgerBtn.setAttribute('aria-expanded', open);
-      hamburgerBtn.textContent = open ? '✕' : '☰';
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const desktopSearch = document.getElementById('searchBox');
+  const mobileSearch = document.getElementById('mobileSearchBox');
+
+  // Hamburger toggle
+  hamburgerBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    mobileMenu.setAttribute('aria-hidden', !open);
+    hamburgerBtn.setAttribute('aria-expanded', open);
+    hamburgerBtn.textContent = open ? '✕' : '☰';
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden', true);
+      hamburgerBtn.setAttribute('aria-expanded', false);
+      hamburgerBtn.textContent = '☰';
+    }
+  });
+
+  // Close menu with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden', true);
+      hamburgerBtn.setAttribute('aria-expanded', false);
+      hamburgerBtn.textContent = '☰';
+    }
+  });
+
+  // Search function
+  function searchPages(event) {
+    const input = event.target.value.toLowerCase();
+    const parentResults = event.target.parentElement.querySelector('.results');
+    parentResults.innerHTML = '';
+
+    if (!input) return;
+
+    const filtered = pages.filter(page => page.name.toLowerCase().includes(input));
+
+    filtered.forEach(page => {
+      const div = document.createElement('div');
+      div.classList.add('result-item');
+      div.textContent = page.name;
+      div.addEventListener('click', () => {
+        window.location.href = page.url;
+      });
+      parentResults.appendChild(div);
     });
 
-    // Mobile dropdown toggle
-    mobileDropdownBtn.addEventListener('click', () => {
-      mobileDropdown.classList.toggle('open');
-    });
+    if (event.key === 'Enter' && filtered.length > 0) {
+      window.location.href = filtered[0].url;
+    }
+  }
 
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
-        mobileMenu.classList.remove('open');
-        mobileDropdown.classList.remove('open');
-        mobileMenu.setAttribute('aria-hidden', true);
-        hamburgerBtn.setAttribute('aria-expanded', false);
-        hamburgerBtn.textContent = '☰';
-      }
-    });
+  desktopSearch.addEventListener('keyup', searchPages);
+  mobileSearch.addEventListener('keyup', searchPages);
+</script>
 
-    // Close menu with Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        mobileMenu.classList.remove('open');
-        mobileDropdown.classList.remove('open');
-        mobileMenu.setAttribute('aria-hidden', true);
-        hamburgerBtn.setAttribute('aria-expanded', false);
-        hamburgerBtn.textContent = '☰';
-      }
-    });
-  </script>
 
 </body>
 </html>
