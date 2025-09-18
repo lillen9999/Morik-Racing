@@ -235,6 +235,7 @@
     .category-grid {
       display: flex;
       justify-content: center;
+      align-items: center; 
       gap: 20px;
       flex-wrap: wrap;
     }
@@ -299,10 +300,24 @@
     }
 
     @media (max-width: 600px) {
-      .category-link { width: 46%; min-width: 180px; }
       .hero { flex-direction: column; height: 420px; }
       .hero .left, .hero .right { height: 210px; }
       .hero-text h1 { font-size: 28px; }
+
+      /* Center categories on mobile */
+      .category-grid {
+        justify-content: center;
+        gap: 15px;
+      }
+      .category-link {
+        width: 80%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      .category-item {
+        margin-left: 0;
+        margin-right: 0;
+      }
     }
   </style>
 </head>
@@ -423,59 +438,4 @@
         mobileMenu.classList.remove('open');
         mobileMenu.setAttribute('aria-hidden', true);
         hamburgerBtn.setAttribute('aria-expanded', false);
-        hamburgerBtn.textContent = '☰';
-      });
-    });
-
-    document.addEventListener('click', (e) => {
-      const withinMenu = mobileMenu.contains(e.target) || hamburgerBtn.contains(e.target);
-      if (!withinMenu && mobileMenu.classList.contains('open')) {
-        mobileMenu.classList.remove('open');
-        mobileMenu.setAttribute('aria-hidden', true);
-        hamburgerBtn.setAttribute('aria-expanded', false);
-        hamburgerBtn.textContent = '☰';
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
-        mobileMenu.classList.remove('open');
-        mobileMenu.setAttribute('aria-hidden', true);
-        hamburgerBtn.setAttribute('aria-expanded', false);
-        hamburgerBtn.textContent = '☰';
-      }
-    });
-
-    function searchPages(event) {
-      const input = event && event.target ? event.target : document.getElementById('searchBox');
-      const query = (input.value || '').toLowerCase().trim();
-      const wrapper = input.closest('.search-wrapper');
-      const resultsDiv = wrapper ? wrapper.querySelector('.results') : null;
-      if (!resultsDiv) return;
-      resultsDiv.innerHTML = "";
-
-      if (query === "") return;
-
-      const results = pages.filter(page => page.name.toLowerCase().includes(query));
-      results.forEach(page => {
-        const div = document.createElement("div");
-        div.classList.add("result-item");
-        div.textContent = page.name;
-        div.onclick = () => window.location.href = page.url;
-        resultsDiv.appendChild(div);
-      });
-
-      if (results.length === 0) {
-        const none = document.createElement("div");
-        none.classList.add("result-item");
-        none.textContent = "Inga resultat hittades";
-        resultsDiv.appendChild(none);
-      }
-
-      if (event && event.key === "Enter" && results.length > 0) {
-        window.location.href = results[0].url;
-      }
-    }
-  </script>
-</body>
-</html>
+        hamburgerBtn.textContent
