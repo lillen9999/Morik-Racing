@@ -14,13 +14,13 @@
 
     /* Navigation */
     .navbar {
-      background-color: rgb(0,0,0);
+      background-color: rgb(0, 0, 0);
       padding: 15px 30px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative; /* för absolut positionerad mobilmeny */
+      position: relative;
       z-index: 1000;
     }
     .center {
@@ -56,7 +56,7 @@
       text-decoration: underline;
     }
 
-    /* Desktop search wrapper */
+    /* Search wrapper */
     .search-bar {
       position: relative;
       align-items: center;
@@ -99,7 +99,7 @@
       color: #000000;
     }
 
-    /* Hamburger */
+    /* Hamburger (mobile) */
     .hamburger {
       display: none;
       font-size: 28px;
@@ -111,7 +111,7 @@
       line-height: 1;
     }
 
-    /* Mobile menu (hidden by default) */
+    /* Mobile menu */
     .mobile-menu {
       display: none;
       position: absolute;
@@ -160,25 +160,26 @@
       background: #222;
     }
 
-  /* Header */
-  .header {
-    text-align: center;
-    background-color: #f4f4f4;
-    margin: 0;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2.5rem;
-    color: #ffffff;
-    font-weight: 700;
-    background-image: url('bilder/moppe3.jpg');
-    background-size: cover;
-    background-position: center;
-    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
-}
-/* Info bar */
-.info-bar {
+    /* Header */
+    .header {
+      text-align: center;
+      background-color: #f4f4f4;
+      margin: 0;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.5rem;
+      color: #ffffff;
+      font-weight: 700;
+      background-image: url('bilder/moppe3.jpg');
+      background-size: cover;
+      background-position: center;
+      box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Info bar */
+    .info-bar {
       background-color: #111;
       color: white;
       display: flex;
@@ -186,116 +187,204 @@
       padding: 15px;
       font-size: 14px;
     }
+    main {
+      text-align: center;
+      padding: 20px 40px;
+      font-size: 1.2rem;
+      margin: 30px;
+      background-color: rgb(174, 174, 174);
+    }
+    main h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    main h3 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #000000;
+    }
+    main ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      text-align: left;
+      max-width: 600px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
 
-footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #333;
-            color: #fff;
-            margin-top: 2rem;
-            width: 100%;
-            position: relative; 
-        }
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 900px) {
-      .center { gap: 10px; }
-      .navbar { padding: 12px 16px; }
-      .logo img { height: 48px; }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #333;
+      color: #fff;
+      margin-top: 2rem;
+      width: 100%;
+      position: relative;
+    }
 
-      /* Dölj desktop-länkar och sök på mobil */
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
       .center { display: none; }
       .search-bar { display: none; }
-
-      /* Visa hamburger */
       .hamburger { display: block; }
     }
+  </style>
+</head>
+<body>
 
-    /* Extra small screens: category items stack */
-    @media (max-width: 600px) {
-      .category-item { width: 46%; min-width: 140px; }
-      .hero { flex-direction: column; height: 420px; }
-      .hero .left, .hero .right { height: 210px; }
-      .hero-text h1 { font-size: 28px; }
-    }
-</style>
-<!-- Navigation -->
-<div class="navbar">
-    <div class="logo"><img src="icons/logo white.png" alt=""></div>
+  <!-- Navigation -->
+  <div class="navbar">
+    <div class="logo"><img src="icons/logo white.png" alt="TjörnsCustoms Logo"></div>
+
+    <!-- Hamburger -->
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMenu()">☰</button>
+
+    <!-- Desktop links -->
     <div class="center">
-        <a href="tjanster.html"><button>Tjänster</button>
-        </a>
-        <a href="tjansterbast.html"><button>Bästsäljare</button>
-        </a>
-        <a href="prislista.html"><button>Priser</button>
-        </a>
-        <a href="kontakt.html"><button>Kontakt</button>
-        </a>
+      <a href="tjanster.html"><button>Tjänster</button></a>
+      <a href="tjansterbast.html"><button>Bästsäljare</button></a>
+      <a href="prislista.html"><button>Priser</button></a>
+      <a href="kontakt.html"><button>Kontakt</button></a>
     </div>
+
+    <!-- Desktop search -->
     <div class="search-bar">
-    <input 
-  type="text" 
-  id="searchBox" 
-  placeholder="Search for a page..." 
-  onkeyup="searchPages(event)">
-<div id="results"></div>
+      <div class="search-wrapper">
+        <input id="searchBox" type="text" placeholder="Search for a page..." onkeyup="searchPages(event)">
+        <div class="results" aria-live="polite"></div>
+      </div>
     </div>
-</div>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <div class="center">
+        <a href="tjanster.html"><button>Tjänster</button></a>
+        <a href="tjansterbast.html"><button>Bästsäljare</button></a>
+        <a href="prislista.html"><button>Priser</button></a>
+        <a href="kontakt.html"><button>Kontakt</button></a>
+      </div>
+      <div class="mobile-search">
+        <div class="search-wrapper">
+          <input id="mobileSearchBox" type="text" placeholder="Sök..." onkeyup="searchPages(event)">
+          <div class="results" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- header -->
- <header
- <h1 class="header">..</h1>
-</header>
-<!-- Info Bar -->
-<div class="info-bar">
-   <div>SUVERÄN KUNDTJÄNST</div>
-   <div>SÄKER BETALNING</div>
-   <div>SNABB BYGGTID</div>
- </div>
- <main>
-    <h
- </main>
+
+  <!-- Header -->
+  <header>
+    <h1 class="header">Komplettbygge</h1>
+  </header>
+
+  <!-- Info Bar -->
+  <div class="info-bar">
+    <div>SUVERÄN KUNDTJÄNST</div>
+    <div>SÄKER BETALNING</div>
+    <div>SNABB BYGGTID</div>
+  </div>
+
+  <main>
+    <h2>Hej, välkomen till Tjörns Customs</h2>
+    <h3>Din expert på motorer</h3>
+    <p>Vi på Tjörns Customs är specialiserade på att bygga kompletta motorer för alla typer av fordon. Oavsett om du behöver en motor för en bil, motorcykel eller annat fordon, så har vi expertisen och erfarenheten för att leverera högkvalitativa motorer som uppfyller dina behov.</p>
+    <p>Våra motorbyggnadstjänster inkluderar:</p>
+    <ul>
+      <li>Motorrenovering: Vi kan renovera din befintliga motor för att återställa dess prestanda och pålitlighet.</li>
+      <li>Motorbyte: Vi kan byta ut din gamla motor mot en ny eller begagnad motor som passar ditt fordon.</li>
+      <li>Motoruppgradering: Vi kan uppgradera din motor för att förbättra dess prestanda och effektivitet.</li>
+      <li>Specialbyggda motorer: Vi kan bygga specialanpassade motorer för att möta dina specifika krav och önskemål.</li>
+    </ul>
+    <p>Vårt team av erfarna mekaniker och tekniker arbetar noggrant
+  </main>
+
   <footer>
     <p>&copy; 2025 Tjörns Customs. All rights reserved.</p>
-</footer>
-<script>
-// Sample pages data
-const pages = [
-{ name: "Hem", url: "index.html" },
-{ name: "Tjänster", url: "tjanster.html" },
-{ name: "Kontakt", url: "kontakt.html" },
-{ name: "Bästsäljare", url: "Tjansterbast.html" },
-{ name: "Priser", url: "prislista.html" },
-{ name: "Services", url: "Service.html" },
-{ name: "Motor", url: "tjanster.html" },
+  </footer>
 
-];
+  <script>
+    const pages = [
+      { name: "Hem", url: "index.html" },
+      { name: "Tjänster", url: "tjanster.html" },
+      { name: "Kontakt", url: "kontakt.html" },
+      { name: "Bästsäljare", url: "Tjansterbast.html" },
+      { name: "Priser", url: "prislista.html" },
+      { name: "Services", url: "Service.html" },
+      { name: "Motor", url: "tjanster.html" }
+    ];
 
-function searchPages(event) {
-const query = document.getElementById("searchBox").value.toLowerCase();
-const resultsDiv = document.getElementById("results");
-resultsDiv.innerHTML = ""; // Clear previous results
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-// Filter pages
-const results = pages.filter(page => page.name.toLowerCase().includes(query));
+    function toggleMenu() {
+      const open = mobileMenu.classList.toggle('open');
+      mobileMenu.setAttribute('aria-hidden', !open);
+      hamburgerBtn.setAttribute('aria-expanded', open);
+      hamburgerBtn.textContent = open ? '✕' : '☰';
+    }
 
-// Display results
-results.forEach(page => {
-  const div = document.createElement("div");
-  div.classList.add("result-item");
-  div.textContent = page.name;
-  div.onclick = () => window.location.href = page.url;
-  resultsDiv.appendChild(div);
-});
+    // Close menu on link click
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', true);
+        hamburgerBtn.setAttribute('aria-expanded', false);
+        hamburgerBtn.textContent = '☰';
+      });
+    });
 
-if (results.length === 0 && query !== "") {
-  resultsDiv.innerHTML = "<div class='result-item'>No results found</div>";
-}
+    // Click outside closes menu
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+        if (mobileMenu.classList.contains('open')) {
+          mobileMenu.classList.remove('open');
+          mobileMenu.setAttribute('aria-hidden', true);
+          hamburgerBtn.setAttribute('aria-expanded', false);
+          hamburgerBtn.textContent = '☰';
+        }
+      }
+    });
 
+    // Escape closes menu
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        mobileMenu.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', true);
+        hamburgerBtn.setAttribute('aria-expanded', false);
+        hamburgerBtn.textContent = '☰';
+      }
+    });
 
-if (event && event.key === "Enter" && results.length > 0) {
-  window.location.href = results[0].url;
-}
-}
-</script>
+    function searchPages(event) {
+      const input = event && event.target ? event.target : document.getElementById('searchBox');
+      const query = (input.value || '').toLowerCase().trim();
+      const wrapper = input.closest('.search-wrapper');
+      const resultsDiv = wrapper ? wrapper.querySelector('.results') : null;
+      if (!resultsDiv) return;
+      resultsDiv.innerHTML = "";
+
+      if (query === "") return;
+
+      const results = pages.filter(page => page.name.toLowerCase().includes(query));
+      results.forEach(page => {
+        const div = document.createElement("div");
+        div.classList.add("result-item");
+        div.textContent = page.name;
+        div.onclick = () => window.location.href = page.url;
+        resultsDiv.appendChild(div);
+      });
+
+      if (results.length === 0) {
+        const none = document.createElement("div");
+        none.classList.add("result-item");
+        none.textContent = "No results found";
+        resultsDiv.appendChild(none);
+      }
+
+      if (event && event.key === "Enter" && results.length > 0) {
+        window.location.href = results[0].url;
+      }
+    }
+  </script>
 </body>
 </html>
