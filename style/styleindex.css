@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="sv">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TjornsCustoms</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
-  <style>
+
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
@@ -195,8 +188,14 @@
       background-size: cover;
       background-position: center;
     }
-    .hero .left { background-image: url('bilder/moppe2.jpg'); filter: brightness(70%); }
-    .hero .right { background-image: url('bilder/moppe1.jpg'); filter: brightness(70%); }
+    .hero .left {
+        background-image: url('bilder/moppe2.jpg');
+        filter: brightness(70%); 
+        }
+    .hero .right {
+        background-image: url('bilder/moppe1.jpg');
+        filter: brightness(70%); 
+        }
     .hero-text {
       position: absolute;
       top: 50%;
@@ -315,172 +314,3 @@
       .category-link { width: 80%; max-width: 300px; margin: 0 auto; }
       .category-item { margin-left: 0; margin-right: 0; }
     }
-  </style>
-</head>
-<body>
-
-  <!-- Navigation -->
-  <div class="navbar">
-    <div class="logo"><img src="icons/logo white.png" alt="TjörnsCustoms Logo"></div>
-
-    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMenu()">☰</button>
-
-    <div class="center" id="navLinks">
-      <a href="tjanster.html"><button>Tjänster</button></a>
-      <a href="tjansterbast.html"><button>Bästsäljare</button></a>
-      <a href="prislista.html"><button>Priser</button></a>
-      <a href="kontakt.html"><button>Kontakt</button></a>
-    </div>
-
-    <div class="search-bar">
-      <div class="search-wrapper">
-        <input id="searchBox" type="text" placeholder="Search for a page..." onkeyup="searchPages(event)">
-        <div class="results" aria-live="polite"></div>
-      </div>
-    </div>
-
-    <!-- Mobile menu -->
-    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-      <div class="center">
-        <div class="dropdown">
-          <button class="dropdown-btn">Tjänster ▸</button>
-          <div class="dropdown-content">
-            <a href="motorbygge.html"><button>Motorbygge</button></a>
-            <a href="service.html"><button>Service</button></a>
-            <a href="styling.html"><button>Styling</button></a>
-            <a href="komplettbygge.html"><button>Komplettbygge</button></a>
-          </div>
-        </div>
-        <a href="tjansterbast.html"><button>Bästsäljare</button></a>
-        <a href="prislista.html"><button>Priser</button></a>
-        <a href="kontakt.html"><button>Kontakt</button></a>
-      </div>
-      <div class="mobile-search">
-        <div class="search-wrapper">
-          <input id="mobileSearchBox" type="text" placeholder="Sök..." onkeyup="searchPages(event)">
-          <div class="results" aria-live="polite"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Hero Section -->
-  <div class="hero">
-    <div class="left"></div>
-    <div class="right"></div>
-    <div class="hero-text">
-      <h1>VINTERBYGGENA ÄR IGÅNG!</h1>
-      <p>Låt oss hjälpa dig.</p>
-      <a href="tjanster.html"><button>TJÄNSTER</button></a>
-    </div>
-  </div>
-
-  <!-- Info Bar -->
-  <div class="info-bar">
-    <div>SUVERÄN KUNDTJÄNST</div>
-    <div>SÄKER BETALNING</div>
-    <div>SNABB BYGGTID</div>
-  </div>
-
-  <!-- Categories -->
-  <div class="categories">
-    <h2>Populära kategorier</h2>
-    <div class="category-grid">
-      <a href="motorbygge.html" class="category-link">
-        <div class="category-item">
-          <img src="icons/gearbox-engine-icon.png" alt="Motorbygge">
-          MOTORBYGGE
-        </div>
-      </a>
-      <a href="service.html" class="category-link">
-        <div class="category-item">
-          <img src="icons/engine-oil-icon.png" alt="Service">
-          SERVICE
-        </div>
-      </a>
-      <a href="styling.html" class="category-link">
-        <div class="category-item">
-          <img src="icons/services-plumber-icon.webp" alt="Styling">
-          STYLING
-        </div>
-      </a>
-      <a href="komplettbygge.html" class="category-link">
-        <div class="category-item">
-          <img src="icons/settings-icon.webp" alt="Komplettbygge">
-          KOMPLETTBYGGE
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <footer>
-    <p>&copy; 2025 Tjörns Customs. All rights reserved.</p>
-  </footer>
-
-  <script>
-    const pages = [
-      { name: "Hem", url: "index.html" },
-      { name: "Tjänster", url: "tjanster.html" },
-      { name: "Kontakt", url: "kontakt.html" },
-      { name: "Bästsäljare", url: "tjansterbast.html" },
-      { name: "Priser", url: "prislista.html" },
-      { name: "Motorbygge", url: "motorbygge.html" },
-      { name: "Service", url: "service.html" },
-      { name: "Styling", url: "styling.html" },
-      { name: "Komplettbygge", url: "komplettbygge.html" }
-    ];
-
-    // Hamburger toggle
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    function toggleMenu() {
-      const open = mobileMenu.classList.toggle('open');
-      mobileMenu.setAttribute('aria-hidden', !open);
-      hamburgerBtn.setAttribute('aria-expanded', open);
-      hamburgerBtn.textContent = open ? '✕' : '☰';
-    }
-
-    // Close mobile menu on link click
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        mobileMenu.setAttribute('aria-hidden', true);
-        hamburgerBtn.setAttribute('aria-expanded', false);
-        hamburgerBtn.textContent = '☰';
-      });
-    });
-
-    // Mobile dropdown toggle
-    document.querySelectorAll('.dropdown-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        btn.parentElement.classList.toggle('open');
-      });
-    });
-
-    // Search function
-    function searchPages(e) {
-      const value = e.target.value.toLowerCase();
-      const wrapper = e.target.parentElement.querySelector('.results');
-      wrapper.innerHTML = '';
-      if (!value) return;
-      const filtered = pages.filter(p => p.name.toLowerCase().includes(value));
-      filtered.forEach((p, i) => {
-        const div = document.createElement('div');
-        div.className = 'result-item';
-        div.textContent = p.name;
-        div.addEventListener('click', () => { window.location.href = p.url; });
-        wrapper.appendChild(div);
-      });
-      // Enter key selects first
-      if (e.key === 'Enter' && filtered.length > 0) {
-        window.location.href = filtered[0].url;
-      }
-    }
-
-    document.getElementById('searchBox').addEventListener('keyup', searchPages);
-    document.getElementById('mobileSearchBox').addEventListener('keyup', searchPages);
-
-  </script>
-
-</body>
-</html>
