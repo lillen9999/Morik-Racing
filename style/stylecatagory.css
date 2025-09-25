@@ -32,6 +32,7 @@
   background: #1c1c1c; /* dark card background */
   border-radius: 12px;
   min-height: 200px;
+  min-width: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
