@@ -1,0 +1,253 @@
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color:rgb(24, 24, 24);
+    }
+
+    /* ---------- NAVIGATION (Samma som i din första kod) ---------- */
+    .navbar {
+      background-color: rgb(0,0,0);
+      padding: 15px 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative; /* för absolut positionerad mobilmeny */
+      z-index: 1000;
+    }
+    .center {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #ffffff;
+      margin: 0 10px;
+      font-weight: 500;
+    }
+
+    .logo img {
+      height: 60px;
+      width: auto;
+      background-color: black;
+    }
+
+    .navbar a button{
+      background-color: transparent;
+      color: #ffffff;
+      border: none;
+      padding: 12px 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .navbar a button:hover {
+      opacity: 0.9;
+      text-decoration: underline;
+    }
+
+    /* Desktop search wrapper */
+    .search-bar {
+      position: relative;
+      align-items: center;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+    }
+    .search-wrapper {
+      position: relative;
+    }
+    .search-wrapper input {
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      min-width: 180px;
+    }
+
+    .results {
+      margin-top: 6px;
+      border-radius: 5px;
+      max-width: 300px;
+      background: #333;
+      box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: 1100;
+    }
+
+    .result-item {
+      padding: 8px;
+      cursor: pointer;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: 500;
+    }
+    .result-item:hover {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      line-height: 1;
+    }
+
+    /* Mobile menu (hidden by default) */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #000;
+      padding: 14px 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    .mobile-menu.open {
+      display: block;
+      animation: menuSlide 180ms ease;
+    }
+    @keyframes menuSlide {
+      from { transform: translateY(-6px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .mobile-menu .center {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .mobile-menu .center a button {
+      width: 100%;
+      text-align: left;
+      padding: 12px;
+      background: transparent;
+      color: #fff;
+      border-radius: 6px;
+    }
+    .mobile-menu .mobile-search .search-wrapper input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background: #111;
+      color: #fff;
+    }
+    .mobile-menu .mobile-search .results {
+      position: relative;
+      background: #222;
+    }
+
+    /* ---------- ÖVRIG STYLING (från din senaste fil) ---------- */
+    .hero-text {
+      text-align: center;
+      padding: 50px 20px;
+
+      color:whitesmoke;
+      background-image: url('/bilder/moppe5.jpg');
+      filter: brightness(0.7);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+     
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+   
+    }
+
+    .hero-text h1 {
+      font-size: 48px;
+      margin: 0;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      margin: 10px 0 20px;
+    }
+
+    .hero-text button {
+      background-color: #000000;
+      color: rgb(255, 255, 255);
+      padding: 20px;
+      border-radius: 10px;
+      border: #000000;
+      font-weight: 600;
+      transition: transform 0.6s, box-shadow 0.6s, background-color 0.3s, color 0.3s;
+    }
+
+    .hero-text button:hover {
+      background-color: #ffffff;
+      color: rgb(0, 0, 0);
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .info-bar {
+      background-color: #111;
+      color: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 15px;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background:#282828 ;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      color: white;
+    }
+
+    h2 { text-align: center; }
+    h3 { text-align: center; }
+    ul { list-style: none; padding: 0; }
+    li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+    }
+    li:last-child { border-bottom: none; }
+    .price { font-weight: bold; }
+
+    /* Responsive adjustments (matchar första kodens breakpoint) */
+    @media (max-width: 900px) {
+      .center { gap: 10px; }
+      .navbar { padding: 12px 16px; }
+      .logo img { height: 48px; }
+
+      /* Dölj desktop-länkar och sök på mobil */
+      .center { display: none; }
+      .search-bar { display: none; }
+
+      /* Visa hamburger */
+      .hamburger { display: block; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-text h1 { font-size: 28px; }
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: black;
+      color: #fff;
+      position: relative;
+    }
