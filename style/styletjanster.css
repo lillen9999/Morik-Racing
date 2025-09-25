@@ -167,6 +167,10 @@ body {
       justify-content: space-around;
       padding: 15px;
       font-size: 14px;
+      border-color: gold;
+      border-style: solid;
+      border-width: 0 0 4px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     /* Main */
@@ -198,10 +202,10 @@ body {
     footer {
       text-align: center;
       padding: 1rem;
-      background-color: #333;
+      background-color: black;
       color: #fff;
-      margin-top: 2rem;
       position: relative;
+      margin-bottom:0 ;
     }
 
     /* Responsive */

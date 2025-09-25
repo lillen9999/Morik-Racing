@@ -1,486 +1,173 @@
-<!DOCTYPE html>
-<html lang="sv">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TjornsCustoms</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background-color: #ffffff;
-    }
-
-    /* ---------- NAVIGATION ---------- */
-    .navbar {
-      background-color: rgb(0,0,0);
-      padding: 15px 30px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      z-index: 1000;
-    }
-    .center {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-    .navbar a {
-      text-decoration: none;
-      color: #ffffff;
-      margin: 0 10px;
-      font-weight: 500;
-    }
-    .logo img {
-      height: 60px;
-      width: auto;
-      background-color: black;
-    }
-    .navbar a button{
-      background-color: transparent;
-      color: #ffffff;
-      border: none;
-      padding: 12px 14px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .navbar a button:hover {
-      opacity: 0.9;
-      text-decoration: underline;
-    }
-
-    /* Desktop search */
-    .search-bar {
-      position: relative;
-      align-items: center;
-      margin: 10px;
-      border-radius: 10px;
-    }
-    .search-wrapper input {
-      padding: 8px 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      min-width: 180px;
-    }
-    .results {
-      margin-top: 6px;
-      border-radius: 5px;
-      max-width: 300px;
-      background: #333;
-      box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
-      position: absolute;
-      left: 0;
-      right: 0;
-      z-index: 1100;
-    }
-    .result-item {
-      padding: 8px;
-      cursor: pointer;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-weight: 500;
-    }
-    .result-item:hover {
-      background: #ffffff;
-      color: #000000;
-    }
-
-    /* Hamburger */
-    .hamburger {
-      display: none;
-      font-size: 28px;
-      color: white;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 6px;
-      line-height: 1;
-    }
-
-    /* Mobile menu */
-    .mobile-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: #000;
-      padding: 14px 18px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
-    }
-    .mobile-menu.open {
-      display: block;
-      animation: menuSlide 180ms ease;
-    }
-    @keyframes menuSlide {
-      from { transform: translateY(-6px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    .mobile-menu .center {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .mobile-menu .center a button {
-      width: 100%;
-      text-align: left;
-      padding: 12px;
-      background: transparent;
-      color: #fff;
-      border-radius: 6px;
-    }
-    .mobile-menu .mobile-search .search-wrapper input {
-      width: 100%;
-      padding: 8px;
-      border-radius: 8px;
-      border: 1px solid #444;
-      background: #111;
-      color: #fff;
-    }
-    .mobile-menu .mobile-search .results {
-      position: relative;
-      background: #222;
-    }
-
-    /* Dropdown inside mobile menu */
-    .dropdown {
-      display: flex;
-      flex-direction: column;
-    }
-    .dropdown-btn {
-      width: 100%;
-      text-align: left;
-      padding: 12px;
-      background: transparent;
-      color: #fff;
-      border: none;
-      font-weight: 600;
-      cursor: pointer;
-      border-radius: 6px;
-    }
-    .dropdown-btn:hover { background-color: rgba(255,255,255,0.1); }
-    .dropdown-content {
-      display: none;
-      flex-direction: column;
-      margin-left: 10px;
-    }
-    .dropdown-content a button {
-      padding: 10px 12px;
-      width: 100%;
-      text-align: left;
-      background: transparent;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      border-radius: 6px;
-    }
-    .dropdown-content a button:hover { background-color: rgba(255,255,255,0.1); }
-    .dropdown.open .dropdown-content { display: flex; }
-
-    /* ---------- HERO ---------- */
-    .hero {
-      display: flex;
-      height: 500px;
-      position: relative;
-    }
-    .hero .left, .hero .right {
-      flex: 1;
-      background-size: cover;
-      background-position: center;
-    }
-    .hero .left { background-image: url('bilder/moppe2.jpg'); filter: brightness(70%); }
-    .hero .right { background-image: url('bilder/moppe1.jpg'); filter: brightness(70%); }
-    .hero-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-      text-align: center;
-      color: white;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-      z-index: 2;
-    }
-    .hero-text h1 { font-size: 48px; margin: 0; }
-    .hero-text button {
-      background-color: #000;
-      color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      border: none;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.6s, box-shadow 0.6s, background-color 0.3s, color 0.3s;
-    }
-    .hero-text button:hover {
-      background-color: #fff;
-      color: #000;
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-
-    /* Info bar */
-    .info-bar {
-      background-color: #111;
-      color: white;
-      display: flex;
-      justify-content: space-around;
-      padding: 15px;
-      font-size: 14px;
-    }
-
-    /* Categories */
-    .categories {
-      padding: 10px;
-      text-align: center;
-      background-color: rgb(192,192,192);
-      padding-bottom: 100px;
-    }
-    .categories h2 { font-size: 28px; margin-bottom: 30px; }
-    .category-grid {
-      display: flex;
-      justify-content: center;
-      align-items: center; 
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .category-link {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      width: 20%;
-      min-width: 150px;
-    }
-    .category-item {
-      background: linear-gradient(135deg, #ffffff, #f8f8f8);
-      border-radius: 12px;
-      min-height: 150px;
-      min-width: 150px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 16px;
-      font-weight: 600;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-      margin-left: 20px;
-      margin-right: 20px;
-    }
-    .category-link:hover .category-item {
-      transform: scale(1.08);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-      background-color: #f5f5f5;
-      border:none;
-    }
-    .category-item img {
-      max-width: 60px;
-      margin-bottom: 10px;
-      transition: transform 0.2s ease;
-    }
-    .category-link:hover img {
-      transform: translateY(-3px);
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #333;
-      color: #fff;
-      margin-top: 2rem;
-      position: relative;
-    }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 900px) {
-      .center { gap: 10px; }
-      .navbar { padding: 12px 16px; }
-      .logo img { height: 48px; }
-      .center { display: none; }
-      .search-bar { display: none; }
-      .hamburger { display: block; }
-    }
-    @media (max-width: 600px) {
-      .hero { flex-direction: column; height: 420px; }
-      .hero .left, .hero .right { height: 210px; }
-      .hero-text h1 { font-size: 28px; }
-      .category-grid { justify-content: center; gap: 15px; }
-      .category-link { width: 80%; max-width: 300px; margin: 0 auto; }
-      .category-item { margin-left: 0; margin-right: 0; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Navigation -->
-  <div class="navbar">
-    <div class="logo"><img src="icons/logo white.png" alt="TjörnsCustoms Logo"></div>
-
-    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMenu()">☰</button>
-
-    <div class="center" id="navLinks">
-      <a href="tjanster.html"><button>Tjänster</button></a>
-      <a href="tjansterbast.html"><button>Bästsäljare</button></a>
-      <a href="prislista.html"><button>Priser</button></a>
-      <a href="kontakt.html"><button>Kontakt</button></a>
-    </div>
-
-    <div class="search-bar">
-      <div class="search-wrapper">
-        <input id="searchBox" type="text" placeholder="Search for a page..." onkeyup="searchPages(event)">
-        <div class="results" aria-live="polite"></div>
-      </div>
-    </div>
-
-    <!-- Mobile menu -->
-    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-      <div class="center">
-        <div class="dropdown">
-          <button class="dropdown-btn">Tjänster ▸</button>
-          <div class="dropdown-content">
-            <a href="motorbygge.html"><button>Motorbygge</button></a>
-            <a href="service.html"><button>Service</button></a>
-            <a href="styling.html"><button>Styling</button></a>
-            <a href="komplettbygge.html"><button>Komplettbygge</button></a>
-          </div>
-        </div>
-        <a href="tjansterbast.html"><button>Bästsäljare</button></a>
-        <a href="prislista.html"><button>Priser</button></a>
-        <a href="kontakt.html"><button>Kontakt</button></a>
-      </div>
-      <div class="mobile-search">
-        <div class="search-wrapper">
-          <input id="mobileSearchBox" type="text" placeholder="Sök..." onkeyup="searchPages(event)">
-          <div class="results" aria-live="polite"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Hero Section -->
-  <div class="hero">
-    <div class="left"></div>
-    <div class="right"></div>
-    <div class="hero-text">
-      <h1>VINTERBYGGENA ÄR IGÅNG!</h1>
-      <p>Låt oss hjälpa dig.</p>
-      <a href="tjanster.html"><button>TJÄNSTER</button></a>
-    </div>
-  </div>
-
-  <!-- Info Bar -->
-  <div class="info-bar">
-    <div>SUVERÄN KUNDTJÄNST</div>
-    <div>SÄKER BETALNING</div>
-    <div>SNABB BYGGTID</div>
-  </div>
-
-  <!-- Categories -->
-  <div class="categories">
-    <h2>Populära kategorier</h2>
-    <div class="category-grid">
-      <a href="motorbygge.html" class="category-link">
-        <div class="category-item">
-          <img src="icons/gearbox-engine-icon.png" alt="Motorbygge">
-          MOTORBYGGE
-        </div>
-      </a>
-      <a href="service.html" class="category-link">
-        <div class="category-item">
-          <img src="icons/engine-oil-icon.png" alt="Service">
-          SERVICE
-        </div>
-      </a>
-      <a href="styling.html" class="category-link">
-        <div class="category-item">
-          <img src="icons/services-plumber-icon.webp" alt="Styling">
-          STYLING
-        </div>
-      </a>
-      <a href="komplettbygge.html" class="category-link">
-        <div class="category-item">
-          <img src="icons/settings-icon.webp" alt="Komplettbygge">
-          KOMPLETTBYGGE
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <footer>
-    <p>&copy; 2025 Tjörns Customs. All rights reserved.</p>
-  </footer>
-
-  <script>
-    const pages = [
-      { name: "Hem", url: "index.html" },
-      { name: "Tjänster", url: "tjanster.html" },
-      { name: "Kontakt", url: "kontakt.html" },
-      { name: "Bästsäljare", url: "tjansterbast.html" },
-      { name: "Priser", url: "prislista.html" },
-      { name: "Motorbygge", url: "motorbygge.html" },
-      { name: "Service", url: "service.html" },
-      { name: "Styling", url: "styling.html" },
-      { name: "Komplettbygge", url: "komplettbygge.html" }
-    ];
-
-    // Hamburger toggle
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    function toggleMenu() {
-      const open = mobileMenu.classList.toggle('open');
-      mobileMenu.setAttribute('aria-hidden', !open);
-      hamburgerBtn.setAttribute('aria-expanded', open);
-      hamburgerBtn.textContent = open ? '✕' : '☰';
-    }
-
-    // Close mobile menu on link click
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        mobileMenu.setAttribute('aria-hidden', true);
-        hamburgerBtn.setAttribute('aria-expanded', false);
-        hamburgerBtn.textContent = '☰';
-      });
-    });
-
-    // Mobile dropdown toggle
-    document.querySelectorAll('.dropdown-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        btn.parentElement.classList.toggle('open');
-      });
-    });
-
-    // Search function
-    function searchPages(e) {
-      const value = e.target.value.toLowerCase();
-      const wrapper = e.target.parentElement.querySelector('.results');
-      wrapper.innerHTML = '';
-      if (!value) return;
-      const filtered = pages.filter(p => p.name.toLowerCase().includes(value));
-      filtered.forEach((p, i) => {
-        const div = document.createElement('div');
-        div.className = 'result-item';
-        div.textContent = p.name;
-        div.addEventListener('click', () => { window.location.href = p.url; });
-        wrapper.appendChild(div);
-      });
-      // Enter key selects first
-      if (e.key === 'Enter' && filtered.length > 0) {
-        window.location.href = filtered[0].url;
+  
+  
+      /* Categories */
+      .categories {
+        padding: 10px;
+        text-align: center;
+        background-color: rgb(192,192,192);
+        padding-bottom: 100px;
       }
-    }
+      .categories h2 { font-size: 28px; margin-bottom: 30px; }
+      .category-grid {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .category-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        width: 20%;
+        min-width: 150px;
+      }
+      .category-item {
+        background: linear-gradient(135deg, #ffffff, #f8f8f8);
+        border-radius: 12px;
+        min-height: 150px;
+        min-width: 150px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 16px;
+        font-weight: 600;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+      .category-link:hover .category-item {
+        transform: scale(1.08);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        background-color: #f5f5f5;
+        border:none;
+      }
+      .category-item img {
+        max-width: 60px;
+        margin-bottom: 10px;
+        transition: transform 0.2s ease;
+        align-items:f;
+      }
+      .category-link:hover img {
+        transform: translateY(-3px);
+      }
 
-    document.getElementById('searchBox').addEventListener('keyup', searchPages);
-    document.getElementById('mobileSearchBox').addEventListener('keyup', searchPages);
 
-  </script>
 
-</body>
-</html>
+
+
+
+
+
+      .category-item {
+        background: #1c1c1c; /* dark card background */
+        border-radius: 12px;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 24px;
+        font-weight: 600;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+        margin-left: 20px;
+        margin-right: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        color: white;
+      }
+      
+      .category-item img {
+        max-width: 50px;
+        margin-bottom: 12px;
+        filter: brightness(1.2) contrast(1.3) saturate(2) sepia(1) hue-rotate(-20deg); 
+        transition: transform 0.2s ease;
+      }
+
+
+
+
+      /* Categories */
+.categories {
+  position: relative;
+  padding: 20px;
+  text-align: left;
+  background-color: rgb(24, 24, 24); /* darker background for contrast */
+  padding-bottom: 100px;
+  position: relative; /* Needed for absolute positioning inside */
+}
+
+.categories h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.category-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.category-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: 20%;
+  min-width: 200px;
+}
+
+.category-item {
+  background: #1c1c1c; /* dark card background */
+  border-radius: 12px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+  font-weight: 600;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+  margin-left: 20px;
+  margin-right: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  color: white;
+}
+
+.category-item img {
+  position: absolute;
+  
+  
+  max-width: 50px;
+  margin-bottom: 12px;
+  filter: brightness(0) saturate(100%) invert(75%) sepia(100%) saturate(482%) hue-rotate(2deg) brightness(98%) contrast(91%);
+  /* This turns icons into a gold-like color */
+  transition: transform 0.2s ease;
+}
+
+.category-item h3 {
+  color: #FFD700; /* gold title */
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.category-item p {
+  font-size: 14px;
+  color: #d1d1d1;
+}
+
+.category-link:hover .category-item {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
+  background-color: #292929;
+}
+
+.category-link:hover img {
+  transform: translateY(-3px);
+}
