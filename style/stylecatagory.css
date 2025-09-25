@@ -4,6 +4,7 @@
   text-align: center;
   background-color: rgb(24, 24, 24); /* darker background for contrast */
   padding-bottom: 100px;
+  
 }
 
 .categories h2 {
@@ -22,13 +23,23 @@
 
 .category-link {
   text-decoration: none;
-  color: inherit;
+  color: black;
+  background-color:whitesmoke;
   display: block;
-  width: 20%;
-  min-width: 200px;
+  align-items: left;
+  transition:background-color 0.5s ease, color 0.5s ease;
+  margin-top: 10px;
+  padding: 15px;
+  border-radius: 30px;
+  text-align: left;
+  padding-right: 10px;
+}
+.category-link:hover {
+  background-color:grey;
+  color: whitesmoke;
 }
 
-.category-item {
+  .category-item {
   background: #1c1c1c; /* dark card background */
   border-radius: 12px;
   min-height: 200px;
@@ -50,7 +61,7 @@
 .category-item img {
   max-width: 50px;
   margin-bottom: 12px;
-  filter: brightness(0) saturate(100%) invert(75%) sepia(100%) saturate(482%) hue-rotate(2deg) brightness(98%) contrast(91%);
+  filter: brightness(0) saturate(0%) invert(75%) sepia(1%) saturate(482%) hue-rotate(0deg) brightness(100%) contrast(100%);
   /* This turns icons into a gold-like color */
   transition: transform 0.2s ease;
 }
@@ -66,12 +77,6 @@
   color: #d1d1d1;
 }
 
-.category-link:hover .category-item {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
-  background-color: #292929;
-}
 
-.category-link:hover img {
-  transform: translateY(-3px);
-}
+
+
