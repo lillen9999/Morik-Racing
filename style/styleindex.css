@@ -40,6 +40,7 @@
       font-weight: 600;
       cursor: pointer;
     }
+
     .navbar a button:hover {
       opacity: 0.9;
       text-decoration: underline;
