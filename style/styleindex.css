@@ -248,7 +248,7 @@
       background-image: url('bilder/moppe3.jpg');
       background-position: center;
       background-size: cover;
-      min-height: 400px;
+      min-height:200px;
       flex-direction: column;
       padding: ;
     }
