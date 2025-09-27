@@ -40,10 +40,11 @@
       font-weight: 600;
       cursor: pointer;
     }
+
     .navbar a button:hover {
       opacity: 0.9;
       text-decoration: underline;
-      text-decoration-color: gold;
+      text-decoration-color: rgb(255, 255, 255);
     }
 
     /* Desktop search */
@@ -247,7 +248,7 @@
       background-image: url('bilder/moppe3.jpg');
       background-position: center;
       background-size: cover;
-      min-height: 400px;
+      min-height:200px;
       flex-direction: column;
       padding: ;
     }
