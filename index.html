@@ -108,17 +108,19 @@
         </div>
     </div>
   </div>
-<div class="choose-us">
-  <h2>
-    Varför ska du välja morik racing?
-  </h2>
-  <p>
-    Lär dig mer om vad vi gör och varför vi är bäst på det vi gör.
-  </p>
-  <div lass="button">
-  <button onclick="location.href='omoss.html'">Läs mer</button>
+  <div class="choose-us">
+    <video autoplay muted loop playsinline class="background-video">
+      <source src="bilder/videos/vidmoped1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  
+    <h2>Varför ska du välja morik racing?</h2>
+    <p>Lär dig mer om vad vi gör och varför vi är bäst på det vi gör.</p>
+    <div class="button">
+      <button onclick="location.href='omoss.html'">Läs mer</button>
+    </div>
   </div>
-</div>
+  
   <footer>
     <p>&copy; 2025 Morik Racing. All rights reserved.</p>
   </footer>
@@ -131,15 +133,14 @@
         background-image: url('bilder/moppe1.jpg');
         filter: brightness(70%); 
         }
-        .choose-us {
+    .choose-us video {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      opacity: 0.7;
       position: relative;
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
-      background-image: url('bilder/moppe4.jpg');
-      background-position: center;
-      background-size: cover;
-      min-height: 700px;
+      z-index: 1; 
+
     }
   </style>
   <script src="script/scriptdropdown.js"></script>
