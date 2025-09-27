@@ -244,9 +244,15 @@
       display: flex;
       align-items: flex-start;
       justify-content: flex-start;
-      min-height: 200px;
+      height: 500px;
       flex-direction: column;
-      overflow: hidden; /* so video won’t spill out */
+      overflow: hidden;
+    
+    }
+    .choose-us:hover .background-video {
+      filter: brightness(80%);
+      z-index: -2;
+      background-color: black;
     }
     
     /* video background */
@@ -255,9 +261,13 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 500px;
       object-fit: cover;   /* acts like background-size: cover */
-      z-index: -1;         /* keep video behind everything */
+      z-index: -1; 
+      filter: brightness(60%);
+      transition: filter 0.5s ease;
+      
+      
     }
     
     /* dark overlay */
@@ -267,7 +277,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 500px;
       background-color: rgba(0, 0, 0, 0.4);
       z-index: 0;
     }

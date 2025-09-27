@@ -2,7 +2,7 @@
 .categories {
   padding: 10px;
   text-align: center;
-  background-color: rgb(24, 24, 24); /* darker background for contrast */
+  background-image: linear-gradient(130deg, #111 0%, #262626 100%);
   padding-bottom: 100px;
   
 }
@@ -21,22 +21,67 @@
   flex-wrap: wrap;
 }
 
-.category-link {
-  text-decoration: none;
-  color: black;
-  background-color:whitesmoke;
-  display: block;
-  align-items: left;
-  transition:background-color 0.5s ease, color 0.5s ease;
+
+/* From Uiverse.io by adamgiebl */ 
+.cssbuttons-io-button {
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 17px;
+  font-weight: 800;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+  cursor: pointer;
+  max-width: 150px;
+  transition: all 0.3s;
   margin-top: 10px;
-  padding: 15px;
-  border-radius: 30px;
-  text-align: left;
-  padding-right: 10px;
 }
-.category-link:hover {
-  background-color:grey;
-  color: whitesmoke;
+.cssbuttons-io-button:hover {
+  scale: 1.07;
+}
+
+.cssbuttons-io-button .icon {
+  background: rgb(26, 26, 26);
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #ffffff;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #ffffff;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
 }
 
   .category-item {
