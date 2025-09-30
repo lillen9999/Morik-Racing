@@ -151,7 +151,7 @@ body {
 .header {
   text-align: center;
   background-image: url('/bilder/moppe3.jpg');
-  filter: grayscale(60%);
+  filter: grayscale(30%);
   height: 300px;
   display: flex;
   justify-content: center;
